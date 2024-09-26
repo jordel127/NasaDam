@@ -6,4 +6,20 @@ public class Espia extends Usuari{
         super(nom, contrasenya);
         this.telefon = telefon;
     }
+
+    public String missatgeEncriptat (String missatge) {
+
+        String encriptat = "";
+
+        for (int i = 0; i < missatge.length(); i++) {
+            char caracter = missatge.charAt(i);
+
+            if (caracter == 'a' || caracter == 'e'|| caracter == 'i'|| caracter == 'o' || caracter == 'u') {
+                encriptat += caracter;
+            }
+
+        }
+
+        return encriptat;
+    }
 }

@@ -21,7 +21,8 @@ public class Fisic extends Usuari{
         this.ciutatOnTreballa = ciutatOnTreballa;
     }
 
-    public double tempDeViatge(String astrosSistemaSolar) {
+    public double tempsDeViatge(String astrosSistemaSolar) {
+
         astrosSistemaSolar = astrosSistemaSolar.toLowerCase();
         double distanciaPlaneta = 0;
         double distanciaSol = 147000000.0;
@@ -55,62 +56,50 @@ public class Fisic extends Usuari{
         if (distanciaPlaneta == 0) {
             return 0;
         }else {
-            return (distanciaPlaneta/distanciaSol) * tiempoAlSol;
+            return (distanciaPlaneta*tiempoAlSol) / distanciaSol;
         }
     }
 
     public double costEconomicRecorregut(String astrosSistemaSolar) {
         astrosSistemaSolar = astrosSistemaSolar.toLowerCase();
         double radioPlaneta = 0;
-        double areaPlaneta = 0;
+        final double preuNitrogen = 200;
+        final double consumRobotKM3 = 0.00000009;
 
-        if (astrosSistemaSolar.equals("mercurio") || astrosSistemaSolar.equals("1")) {
-            radioPlaneta = 2440.0;
-        }
-        else if (astrosSistemaSolar.equals("venus") || astrosSistemaSolar.equals("2")) {
-            radioPlaneta = 6052.0;
-        }
-        else if (astrosSistemaSolar.equals("marte") || astrosSistemaSolar.equals("3")) {
-            radioPlaneta = 3390.0;
-        }
-        else if (astrosSistemaSolar.equals("jupiter") || astrosSistemaSolar.equals("4")) {
-            radioPlaneta = 69911.0;
-        }
-        else if (astrosSistemaSolar.equals("saturno") || astrosSistemaSolar.equals("5")) {
-            radioPlaneta = 58232.0;
-        }
-        else if (astrosSistemaSolar.equals("urano") || astrosSistemaSolar.equals("6")) {
-            radioPlaneta = 25362.0;
-        }
-        else if (astrosSistemaSolar.equals("neptuno") || astrosSistemaSolar.equals("7")) {
-            radioPlaneta = 24622.0;
-        }
+        radioPlaneta = switch (astrosSistemaSolar) {
+            case "mercurio", "1" -> 2440.0;
+            case "venus", "2" -> 6052.0;
+            case "marte", "3" -> 3390.0;
+            case "jupiter", "4" -> 69911.0;
+            case "saturno", "5" -> 58232.0;
+            case "urano", "6" -> 25362.0;
+            case "neptuno", "7" -> 24622.0;
+            default -> radioPlaneta;
+        };
 
-        areaPlaneta = 4 * Math.PI * (radioPlaneta * radioPlaneta);
+        double areaPlaneta = 4 * Math.PI * (radioPlaneta * radioPlaneta);
+        double consumNitrogen = areaPlaneta / consumRobotKM3;
 
-        double consumNitrogen = areaPlaneta * (90.0 / 2);
-        double costTotalNitrogen = consumNitrogen * 1000;
-        costTotalNitrogen = costTotalNitrogen * 200;
-
-        return costTotalNitrogen;
+        return consumNitrogen * preuNitrogen;
     }
 
     public String PlanetaMesEconomic() {
         // Inicialitzar el preu més baix amb el cost de Mercuri
-        double precioMasVajo = costEconomicRecorregut("mercurio");
+        double preuMesBaix = costEconomicRecorregut("mercurio");
         String planetaMasBarato = "mercurio";
-        System.out.println(precioMasVajo+ " es el cost econòmic del planeta mercurio");
+        System.out.println(preuMesBaix+ " es el cost econòmic del planeta mercurio");
 
         // Iterar sobre els altres planetes numerats de 1 a 7
         for (int i = 2; i <= 7; i++) {  // Comença amb 2 perquè ja tens Mercurio inicialitzat
             String numString = String.valueOf(i);
             double newPrecio = costEconomicRecorregut(numString);
+            System.out.println(i);
             System.out.println(newPrecio);
 
             // Si trobem un preu més baix, actualitzem el preu i el nom del planeta
-            if (newPrecio < precioMasVajo) {
+            if (newPrecio < preuMesBaix) {
                 System.out.println("Ola!");
-                precioMasVajo = newPrecio;
+                preuMesBaix = newPrecio;
 
                 // Assignar el nom del planeta basat en l'índex
                 if (i == 2) planetaMasBarato = "venus";
@@ -118,12 +107,12 @@ public class Fisic extends Usuari{
                 else if (i == 4) planetaMasBarato = "jupiter";
                 else if (i == 5) planetaMasBarato = "saturno";
                 else if (i == 6) planetaMasBarato = "urano";
-                else if (i == 7) planetaMasBarato = "neptuno";
+                else planetaMasBarato = "neptuno";
             }
         }
 
         // Retornar el nom del planeta més econòmic amb el seu cost
-        return planetaMasBarato + " és el més econòmic amb un cost de " + precioMasVajo + "€";
+        return planetaMasBarato + " és el més econòmic amb un cost de " + preuMesBaix + "€";
     }
 
 }

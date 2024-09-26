@@ -61,7 +61,7 @@ public class FrameFisic extends JFrame {
         class  TempsViatgeListener implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 String planeta = nomPlaneta.getText();
-                double temps = new Fisic("1", "1", 1, 1, "1", "1", 1, "1", "1").tempDeViatge(planeta);
+                double temps = new Fisic("1", "1", 1, 1, "1", "1", 1, "1", "1").tempsDeViatge(planeta);
                 resposta.setText("");
                 if (planeta.equals("")){
                     resposta.setText("Introdueix un nom de planeta");
