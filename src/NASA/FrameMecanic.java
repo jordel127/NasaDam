@@ -9,7 +9,7 @@ public class FrameMecanic extends JFrame {
     private JPanel panell;
 
     private JButton exit;
-    public FrameMecanic(){
+    public FrameMecanic(Mecanic mecanicInfo){
         setVisible(true);
         setTitle("Mecanic");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

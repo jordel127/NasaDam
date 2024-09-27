@@ -14,7 +14,7 @@ public class FrameFisic extends JFrame {
 
     private JLabel resposta;
 
-    public FrameFisic() {
+    public FrameFisic(Fisic fisicInfo){
         setVisible(true);
         setTitle("Fisic");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,7 +61,7 @@ public class FrameFisic extends JFrame {
         class  TempsViatgeListener implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 String planeta = nomPlaneta.getText();
-                double temps = new Fisic("1", "1", 1, 1, "1", "1", 1, "1", "1").tempsDeViatge(planeta);
+                double temps = fisicInfo.tempsDeViatge(planeta);
                 resposta.setText("");
                 if (planeta.equals("")){
                     resposta.setText("Introdueix un nom de planeta");
@@ -78,7 +78,7 @@ public class FrameFisic extends JFrame {
         class  costEconomicListener implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 String planeta = nomPlaneta.getText();
-                double cost = new Fisic("1", "1", 1, 1, "1", "1", 1, "1", "1").costEconomicRecorregut(planeta);
+                double cost = fisicInfo.costEconomicRecorregut(planeta);
                 resposta.setText("");
                 if (planeta.equals("")){
                     resposta.setText("Introdueix un nom de planeta");
@@ -86,7 +86,7 @@ public class FrameFisic extends JFrame {
                     resposta.setText("No existeix o no es apte aquest planeta");
                 }
                 else {
-                    resposta.setText("El cost econòmic del planeta "+planeta+" es de: " + cost + " €");
+                    resposta.setText("El cost econòmic del planeta "+planeta+" es de: " + (long) cost + " €");
                 }
             }
         }
@@ -96,7 +96,7 @@ public class FrameFisic extends JFrame {
 
     class  PlanetaMesEconomicListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            String respuesta = new Fisic("1", "1", 1, 1, "1", "1", 1, "1", "1").PlanetaMesEconomic();
+            String respuesta = fisicInfo.PlanetaMesEconomic();
             resposta.setText(respuesta);
         }
     }

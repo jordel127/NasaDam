@@ -8,19 +8,24 @@ public class Astronauta extends Usuari{
     public int edat;
     public String sexe;
     public String adreça;
-    public int rangMilitar;
 
-    public Astronauta(String nom, String contrasenya, String dataPrimerVol, int edat, String sexe, String adreça, int rangMilitar) {
-        super(nom, contrasenya);
+    public int missionsOk;
+
+    public int missionsKo;
+    public String rangMilitar;
+
+    public Astronauta(String nom, String contrasenya, String roll,String dataPrimerVol, int edat, String sexe, String adreça, int missionsOk, int missionsKo , String rangMilitar) {
+        super(nom, contrasenya, roll);
         this.dataPrimerVol = dataPrimerVol;
         this.edat = edat;
         this.sexe = sexe;
         this.adreça = adreça;
+        this.missionsOk = missionsOk;
+        this.missionsKo = missionsKo;
         this.rangMilitar = rangMilitar;
     }
 
-    public void localitzacioAstronauta() {
-
+    public String localitzacioAstronautaLatitud() {
         Random math = new Random();
 
         //Latitud
@@ -34,6 +39,14 @@ public class Astronauta extends Usuari{
             hemisferiLatitud = 'N';
         }
 
+        String latitud = grausLatitud + "° " + minutsLatitud + "' " + segonsLatitud + "'' " + hemisferiLatitud;
+        return latitud;
+    }
+
+    public String localitzacioAstronautaLongitud() {
+
+        Random math = new Random();
+
         //Longitud
         int grausLongitud = math.nextInt(181);
         int minutsLongitud = math.nextInt(60);
@@ -45,10 +58,8 @@ public class Astronauta extends Usuari{
             hemisferiLongitud = 'E';
         }
 
-        String latitud = grausLatitud + "° " + minutsLatitud + "' " + segonsLatitud + "'' " + hemisferiLatitud;
         String longitud = grausLongitud + "° " + minutsLongitud + "' " + segonsLongitud + "'' " + hemisferiLongitud;
-
-        System.out.println("Localització de l'astronauta: " + latitud + " " + longitud);
+        return longitud;
     }
 
     public String missatgeEncriptat (String missatge) {

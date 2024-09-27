@@ -8,15 +8,17 @@ public class Mecanic extends Usuari{
     public double numeroDelTaller;
     public double salari;
     public int edat;
+    public String sexe;
     public String adreça;
     public int anyExperiència;
     public String ciutatOnTrballa;
 
-    public Mecanic(String nom, String contrasenya, double numeroDelTaller, double salari, int edat, String adreça, int anyExperiència, String ciutatOnTrballa) {
-        super(nom, contrasenya);
+    public Mecanic(String nom, String contrasenya, String roll, double numeroDelTaller, double salari, int edat, String sexe,String adreça, int anyExperiència, String ciutatOnTrballa) {
+        super(nom, contrasenya,roll);
         this.numeroDelTaller = numeroDelTaller;
         this.salari = salari;
         this.edat = edat;
+        this.sexe = sexe;
         this.adreça = adreça;
         this.anyExperiència = anyExperiència;
         this.ciutatOnTrballa = ciutatOnTrballa;

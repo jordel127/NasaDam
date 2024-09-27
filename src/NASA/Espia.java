@@ -2,8 +2,8 @@ package NASA;
 
 public class Espia extends Usuari{
     public String telefon;
-    public Espia(String nom, String contrasenya, String telefon) {
-        super(nom, contrasenya);
+    public Espia(String nom, String contrasenya, String roll, String telefon) {
+        super(nom, contrasenya, roll);
         this.telefon = telefon;
     }
 

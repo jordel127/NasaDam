@@ -8,9 +8,13 @@ import java.awt.event.ActionListener;
 public class FrameAstronauta extends JFrame {
     private JPanel panell;
 
-    private JButton exit;
+    private JButton exit, getCordenades, encriptarMissatge;
 
-    public FrameAstronauta(){
+    private JTextField missatge;
+
+    private JLabel latitud, longitud;
+
+    public FrameAstronauta(Astronauta astronautaInfo){
         setVisible(true);
         setTitle("Astronauta");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -19,6 +23,20 @@ public class FrameAstronauta extends JFrame {
         panell = new JPanel();
 
         panell.add(new JLabel("Astronauta"));
+
+        panell.add(new JLabel("Missatge encriptat: "));
+        missatge = new JTextField(10);
+        panell.add(new JLabel(""));
+        panell.add(missatge);
+
+        encriptarMissatge = new JButton("Encriptar missatge");
+        panell.add(encriptarMissatge);
+
+        panell.add(latitud);
+        panell.add(longitud);
+
+        getCordenades = new JButton("Localització de l'astronauta");
+        panell.add(getCordenades);
 
         exit = new JButton("Exit");
         panell.add(exit);
@@ -37,5 +55,17 @@ public class FrameAstronauta extends JFrame {
             }
         }
         exit.addActionListener(new ExitListener());
+
+        class  GetCordenadesListener implements ActionListener {
+            public void actionPerformed(ActionEvent e) {
+                latitud.setText(astronautaInfo.localitzacioAstronautaLatitud());
+                longitud.setText(astronautaInfo.localitzacioAstronautaLongitud());
+                dispose();
+            }
+        }
+        getCordenades.addActionListener(new GetCordenadesListener());
+
+
+
     }
 }

@@ -10,8 +10,8 @@ public class Fisic extends Usuari{
     public String ciutatOnTreballa;
 
 
-    public Fisic(String nom, String contrasenya, int anysExperiència, int edat, String sexe, String adreça, double salari, String titulacioAcademica, String ciutatOnTreballa) {
-        super(nom, contrasenya);
+    public Fisic(String nom, String contrasenya, String roll, int anysExperiència, int edat, String sexe, String adreça, double salari, String titulacioAcademica, String ciutatOnTreballa) {
+        super(nom, contrasenya, roll);
         this.anysExperiència = anysExperiència;
         this.edat = edat;
         this.sexe = sexe;

@@ -9,7 +9,7 @@ public class FrameEspia extends JFrame {
     private JPanel panell;
     private JButton exit;
 
-    public FrameEspia(){
+    public FrameEspia(Espia espiaInfo){
         setVisible(true);
         setTitle("Espia");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
