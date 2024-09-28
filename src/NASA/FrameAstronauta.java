@@ -26,13 +26,17 @@ public class FrameAstronauta extends JFrame {
 
         panell.add(new JLabel("Missatge encriptat: "));
         missatge = new JTextField(10);
-        panell.add(new JLabel(""));
         panell.add(missatge);
 
         encriptarMissatge = new JButton("Encriptar missatge");
         panell.add(encriptarMissatge);
 
+        panell.add(new JLabel("Latitud: "));
+        latitud = new JLabel("");
         panell.add(latitud);
+
+        panell.add(new JLabel("Longitud: "));
+        longitud = new JLabel("");
         panell.add(longitud);
 
         getCordenades = new JButton("Localització de l'astronauta");
@@ -60,10 +64,16 @@ public class FrameAstronauta extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 latitud.setText(astronautaInfo.localitzacioAstronautaLatitud());
                 longitud.setText(astronautaInfo.localitzacioAstronautaLongitud());
-                dispose();
             }
         }
         getCordenades.addActionListener(new GetCordenadesListener());
+
+        class  EncriptarMissatgeListener implements ActionListener {
+            public void actionPerformed(ActionEvent e) {
+                missatge.setText(astronautaInfo.missatgeEncriptat(missatge.getText()));
+            }
+        }
+        encriptarMissatge.addActionListener(new EncriptarMissatgeListener());
 
 
 

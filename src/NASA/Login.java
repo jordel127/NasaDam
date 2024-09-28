@@ -47,10 +47,9 @@ public class Login extends JFrame {
                 }else {
                     String[] userInfo = getUserInfo(user.getText(), new String(pass.getPassword()));
 
-                    if (userInfo == null) {
+                    if (userInfo[3] == null) {
                         JOptionPane.showMessageDialog(null, "Usuari o contrasenya incorrectes");
                     }else if (userInfo[3].equals("3")){
-
                         JOptionPane.showMessageDialog(null, "Hola Fisic");
                         new FrameFisic(getInfoCompletaFisic("fisic", userInfo));
                         dispose();
@@ -59,6 +58,7 @@ public class Login extends JFrame {
                         new FrameEspia(getInfoCompletaEspia("espia", userInfo));
                         dispose();
                     }else if (userInfo[3].equals("1")){
+                        System.out.println(userInfo[3]);
                         JOptionPane.showMessageDialog(null, "Hola Astronauta");
                         new FrameAstronauta(getInfoCompletaAstronauta("astronauta", userInfo));
                         dispose();
@@ -228,6 +228,7 @@ public class Login extends JFrame {
 
         Mecanic mecanic = null;
 
+        int idUsuari = Integer.parseInt(userInfo[0]);
         String nom = userInfo[1];
         String contrasenya = userInfo[2];
         String rol = userInfo[3];
@@ -259,7 +260,7 @@ public class Login extends JFrame {
                 ciutatOnTrballa = rs.getString("ciutat_on_treballa");
 
             }
-            mecanic = new Mecanic(nom, contrasenya, rol, numeroDelTaller, salari, edat, sexe, adreça, anyExperiència, ciutatOnTrballa);
+            mecanic = new Mecanic(idUsuari,nom, contrasenya, rol, numeroDelTaller, salari, edat, sexe, adreça, anyExperiència, ciutatOnTrballa);
 
         }catch (Exception e) {
             e.printStackTrace();
