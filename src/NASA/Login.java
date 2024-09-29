@@ -112,6 +112,7 @@ public class Login extends JFrame {
         String nom = userInfo[1];
         String contrasenya = userInfo[2];
         String rol = userInfo[3];
+        int idUsuari = Integer.parseInt(userInfo[0]);
 
         try {
             Conexio conn = new Conexio();
@@ -140,7 +141,7 @@ public class Login extends JFrame {
                 ciutatOnTreballa = rs.getString("ciutat_treball");
 
             }
-            fisic = new Fisic(nom, contrasenya, rol, anysExperiència, edat, sexe, adreça, salari, titulacioAcademica, ciutatOnTreballa);
+            fisic = new Fisic(idUsuari, nom, contrasenya, rol, anysExperiència, edat, sexe, adreça, salari, titulacioAcademica, ciutatOnTreballa);
 
         }catch (Exception e) {
             e.printStackTrace();

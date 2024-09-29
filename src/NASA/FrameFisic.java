@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class FrameFisic extends JFrame {
     private JPanel panell;
 
-    private JButton exit, funcio1, funcio2, funcio3;
+    private JButton exit, funcio1, funcio2, funcio3, fixar;
 
     private JTextField nomPlaneta;
 
@@ -36,6 +36,9 @@ public class FrameFisic extends JFrame {
 
         funcio3 = new JButton("Planeta més econòmic");
         panell.add(funcio3);
+
+        fixar = new JButton("Fixar");
+        panell.add(fixar);
 
         exit = new JButton("Exit");
         panell.add(exit);
@@ -101,5 +104,12 @@ public class FrameFisic extends JFrame {
         }
     }
     funcio3.addActionListener(new PlanetaMesEconomicListener());
+
+        class  FixarListener implements ActionListener {
+            public void actionPerformed(ActionEvent e) {
+                fisicInfo.fitxar(fisicInfo.idUsuari);
+            }
+        }
+        fixar.addActionListener(new FixarListener());
     }
 }

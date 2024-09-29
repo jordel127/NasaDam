@@ -1,6 +1,13 @@
 package NASA;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 public class Fisic extends Usuari{
+    public int idUsuari;
     public int anysExperiència;
     public int edat;
     public String sexe;
@@ -10,8 +17,9 @@ public class Fisic extends Usuari{
     public String ciutatOnTreballa;
 
 
-    public Fisic(String nom, String contrasenya, String roll, int anysExperiència, int edat, String sexe, String adreça, double salari, String titulacioAcademica, String ciutatOnTreballa) {
+    public Fisic(int idUsuari, String nom, String contrasenya, String roll, int anysExperiència, int edat, String sexe, String adreça, double salari, String titulacioAcademica, String ciutatOnTreballa) {
         super(nom, contrasenya, roll);
+        this.idUsuari = idUsuari;
         this.anysExperiència = anysExperiència;
         this.edat = edat;
         this.sexe = sexe;
@@ -113,6 +121,38 @@ public class Fisic extends Usuari{
 
         // Retornar el nom del planeta més econòmic amb el seu cost
         return planetaMasBarato + " és el més econòmic amb un cost de " + preuMesBaix + "€";
+    }
+    public void fitxar(int idUsuari) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+
+        System.out.println(idUsuari);
+
+        try {
+            con = Conexio.getConnection();
+
+            String sql = "UPDATE mecanic SET hora = ? WHERE idusuari = ?";
+            pstmt = con.prepareStatement(sql);
+
+            LocalDateTime horaFitxar = LocalDateTime.now();
+
+            pstmt.setTimestamp(1, Timestamp.valueOf(horaFitxar));
+            pstmt.setInt(2, idUsuari);
+
+            int filesActualitzades = pstmt.executeUpdate();
+
+            System.out.println("S''ha actualitzat correctament " + filesActualitzades + " fila.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) pstmt.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
