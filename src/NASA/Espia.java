@@ -7,6 +7,15 @@ public class Espia extends Usuari{
         this.telefon = telefon;
     }
 
+    // Getters y Setters
+    public String getTelefon() {
+        return telefon;
+    }
+
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
+    }
+
     public String missatgeEncriptat (String missatge) {
 
         String encriptat = "";
