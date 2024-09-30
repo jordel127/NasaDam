@@ -29,7 +29,7 @@ public class Login extends JFrame {
         // Etiqueta Usuario
         JLabel labelUser = new JLabel("Usuari:");
         labelUser.setFont(new Font("Arial", Font.BOLD, 16));
-        labelUser.setForeground(new Color(173, 216, 230));  // Color azul claro, inspirado en los trajes de astronautas
+        labelUser.setForeground(new Color(173, 216, 230));
         gbc.gridx = 0;
         gbc.gridy = 0;
         panell.add(labelUser, gbc);

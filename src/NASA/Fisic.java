@@ -131,7 +131,7 @@ public class Fisic extends Usuari{
         try {
             con = Conexio.getConnection();
 
-            String sql = "UPDATE mecanic SET hora = ? WHERE idusuari = ?";
+            String sql = "UPDATE fisic SET hora = ? WHERE idusuari = ?";
             pstmt = con.prepareStatement(sql);
 
             LocalDateTime horaFitxar = LocalDateTime.now();

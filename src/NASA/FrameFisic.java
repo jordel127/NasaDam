@@ -21,7 +21,7 @@ public class FrameFisic extends JFrame {
 
         // Panel con GridBagLayout para mejor disposición
         panell = new JPanel(new GridBagLayout());
-        panell.setBackground(new Color(10, 25, 47));  // Fondo oscuro estilo NASA
+        panell.setBackground(new Color(10, 25, 47));
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
@@ -29,7 +29,7 @@ public class FrameFisic extends JFrame {
 
         // Etiqueta "Planeta per comprobar"
         JLabel labelPlaneta = new JLabel("Planeta per comprobar: ");
-        labelPlaneta.setForeground(new Color(173, 216, 230));  // Azul claro estilo NASA
+        labelPlaneta.setForeground(new Color(173, 216, 230));
         labelPlaneta.setFont(new Font("Arial", Font.BOLD, 14));
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -37,7 +37,7 @@ public class FrameFisic extends JFrame {
 
         // Campo de texto para el nombre del planeta
         nomPlaneta = new JTextField(10);
-        nomPlaneta.setBackground(new Color(19, 41, 75));  // Fondo oscuro
+        nomPlaneta.setBackground(new Color(19, 41, 75));
         nomPlaneta.setForeground(Color.WHITE);
         nomPlaneta.setBorder(BorderFactory.createLineBorder(new Color(173, 216, 230), 2));
         gbc.gridx = 1;

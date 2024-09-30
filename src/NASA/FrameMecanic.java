@@ -13,10 +13,10 @@ public class FrameMecanic extends JFrame {
 
     private JButton exit, llistarVehiclesTaller, InmprimirListaVehicles, fixar;
 
-    private Mecanic mecanicInfo; // Declarar como atributo de la clase
+    private Mecanic mecanicInfo;
 
     public FrameMecanic(Mecanic mecanicInfo) {
-        this.mecanicInfo = mecanicInfo; // Inicializar el atributo
+        this.mecanicInfo = mecanicInfo;
 
         setTitle("Mecanic - NASA");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,7 +24,7 @@ public class FrameMecanic extends JFrame {
 
         // Panel con GridBagLayout para mejor disposición
         panell = new JPanel(new GridBagLayout());
-        panell.setBackground(new Color(10, 25, 47)); // Fondo oscuro estilo NASA
+        panell.setBackground(new Color(10, 25, 47));
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
@@ -32,7 +32,7 @@ public class FrameMecanic extends JFrame {
 
         // Etiqueta "Mecanic"
         JLabel titleLabel = new JLabel("Mecanic");
-        titleLabel.setForeground(new Color(173, 216, 230)); // Azul claro estilo NASA
+        titleLabel.setForeground(new Color(173, 216, 230));
         titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -42,12 +42,12 @@ public class FrameMecanic extends JFrame {
         // Área de texto para listar vehículos
         veicles = new JTextArea(10, 30);
         veicles.setEditable(false);
-        veicles.setBackground(new Color(19, 41, 75)); // Fondo oscuro
+        veicles.setBackground(new Color(19, 41, 75));
         veicles.setForeground(Color.WHITE);
         veicles.setBorder(BorderFactory.createLineBorder(new Color(173, 216, 230), 2));
         gbc.gridy = 1;
         gbc.gridwidth = 2;
-        panell.add(new JScrollPane(veicles), gbc); // Añadir scroll si el texto es largo
+        panell.add(new JScrollPane(veicles), gbc);
 
         // Botón "Llistar vehicles taller"
         llistarVehiclesTaller = new JButton("Llistar vehicles taller");
@@ -92,7 +92,7 @@ public class FrameMecanic extends JFrame {
 
     // Método para estilizar los botones
     private void styleButton(JButton button) {
-        button.setBackground(new Color(173, 216, 230)); // Fondo azul claro
+        button.setBackground(new Color(173, 216, 230));
         button.setForeground(Color.BLACK);
         button.setFocusPainted(false);
         button.setFont(new Font("Arial", Font.BOLD, 14));

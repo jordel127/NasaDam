@@ -22,14 +22,14 @@ public class FrameAstronauta extends JFrame {
 
         // Crear el panel principal con GridBagLayout para mayor control sobre el diseño
         panell = new JPanel(new GridBagLayout());
-        panell.setBackground(new Color(10, 25, 47));  // Fondo oscuro, estilo NASA
+        panell.setBackground(new Color(10, 25, 47));
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);  // Márgenes entre los componentes
+        gbc.insets = new Insets(10, 10, 10, 10);
 
         // Título
         JLabel titleLabel = new JLabel("Astronauta");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        titleLabel.setForeground(new Color(173, 216, 230));  // Azul claro
+        titleLabel.setForeground(new Color(173, 216, 230));
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;  // El título ocupa dos columnas
@@ -37,7 +37,7 @@ public class FrameAstronauta extends JFrame {
 
         // Campo de texto: Mensaje encriptado
         JLabel missatgeLabel = new JLabel("Missatge encriptat: ");
-        missatgeLabel.setForeground(new Color(173, 216, 230));  // Azul claro
+        missatgeLabel.setForeground(new Color(173, 216, 230));
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
