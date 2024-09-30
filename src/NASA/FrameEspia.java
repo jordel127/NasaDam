@@ -86,6 +86,7 @@ public class FrameEspia extends JFrame {
         JButton botonCrear = new JButton("Crear Espía");
         JButton botonActualizar = new JButton("Actualizar Espía");
         JButton botonEliminar = new JButton("Eliminar Espía");
+        JButton botonBuscar = new JButton("Buscar Espía");
 
         // Agregar component al JFrame
         add(etiquetaIdUsuari);
@@ -102,6 +103,7 @@ public class FrameEspia extends JFrame {
         add(botonCrear);
         add(botonActualizar);
         add(botonEliminar);
+        add(botonBuscar);
 
         // Funció botó crear espía
         botonCrear.addActionListener(new ActionListener() {
@@ -126,6 +128,14 @@ public class FrameEspia extends JFrame {
                 eliminarEspia();
             }
         });
+
+        // Funció botó buscar espía
+        botonBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buscarEspia();
+            }
+        });
     }
 
     // Metode crear espía
@@ -147,19 +157,24 @@ public class FrameEspia extends JFrame {
 
     // Metode actualitzar espía
     private void actualizarEspia() {
-        int idUsuari = Integer.parseInt(campoIdUsuari.getText());
-        String nombre = campoNombre.getText();
-        String contrasenya = campoContrasenya.getText();
-        String roll = campoRoll.getText();
-        String telefon = campoTelefon.getText();
+        try {
+            int idUsuari = Integer.parseInt(campoIdUsuari.getText());
+            String nombre = campoNombre.getText();
+            String contrasenya = campoContrasenya.getText();
+            String roll = campoRoll.getText();
+            String telefon = campoTelefon.getText();
 
-        Espia espiaActualizado = new Espia(nombre, contrasenya, roll, telefon);
-        boolean exito = espaiCRUD.actualizarEspia(espiaActualizado);
+            Espia espiaActualizado = new Espia(nombre, contrasenya, roll, telefon);
 
-        if (exito) {
-            JOptionPane.showMessageDialog(this, "Espía actualizat");
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al actualizar espía");
+            boolean exito = espaiCRUD.actualizarEspia(espiaActualizado, idUsuari);
+
+            if (exito) {
+                JOptionPane.showMessageDialog(this, "Espía actualizado");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al actualizar espía");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El ID de usuario debe ser un número válido.");
         }
     }
 
@@ -172,6 +187,23 @@ public class FrameEspia extends JFrame {
             JOptionPane.showMessageDialog(this, "Espía eliminat");
         } else {
             JOptionPane.showMessageDialog(this, "Error al eliminar espía");
+        }
+    }
+
+    private void buscarEspia() {
+
+        int idUsuari = Integer.parseInt(campoIdUsuari.getText());
+
+        Espia espia = espaiCRUD.obtenerEspia(idUsuari);
+
+        if (espia != null) {
+            campoNombre.setText(espia.getNom());
+            campoContrasenya.setText(espia.getContrasenya());
+            campoRoll.setText(espia.getRoll());
+            campoTelefon.setText(espia.getTelefon());
+            JOptionPane.showMessageDialog(this, "Espía encontrado");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontró ningún espía con ese ID");
         }
     }
 }

@@ -8,6 +8,9 @@ public class Espia extends Usuari{
     }
 
     // Getters y Setters
+    public String getNom() {
+        return super.getNom();
+    }
     public String getTelefon() {
         return telefon;
     }

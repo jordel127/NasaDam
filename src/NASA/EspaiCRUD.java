@@ -87,17 +87,14 @@ public class EspaiCRUD {
         return espia;
     }
 
-    public boolean actualizarEspia(Espia espia) {
+    public boolean actualizarEspia(Espia espia, int idUsuari) {
         String sqlUsuari = "UPDATE usuari SET nom = ?, contrasenya = ?, rol = ? WHERE idusuari = ?";
         String sqlEspia = "UPDATE espia SET telefon = ? WHERE idusuari = ?";
         try {
             // Desactivar auto-commit
             conexion.setAutoCommit(false);
 
-            // Obtenir id de l'usuari
-            int idUsuari = obtenerIdUsuari(espia.getNom(), espia.getContrasenya());
-
-            // Actualizar usuari a la taula `usuari`
+            // Actualizar el usuario en la tabla `usuari`
             PreparedStatement statementUsuari = conexion.prepareStatement(sqlUsuari);
             statementUsuari.setString(1, espia.getNom());
             statementUsuari.setString(2, espia.getContrasenya());
@@ -105,24 +102,20 @@ public class EspaiCRUD {
             statementUsuari.setInt(4, idUsuari);
             int filasActualizadasUsuari = statementUsuari.executeUpdate();
 
-            // Actualitzar espia a la taula `espia`
             PreparedStatement statementEspia = conexion.prepareStatement(sqlEspia);
             statementEspia.setString(1, espia.getTelefon());
             statementEspia.setInt(2, idUsuari);
             int filasActualizadasEspia = statementEspia.executeUpdate();
 
-            // Confirmar transacció
             if (filasActualizadasUsuari > 0 && filasActualizadasEspia > 0) {
                 conexion.commit();
                 return true;
             } else {
-                // Error fer rollback
                 conexion.rollback();
                 return false;
             }
         } catch (SQLException e) {
             try {
-                // Error fer rollback
                 conexion.rollback();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -131,7 +124,7 @@ public class EspaiCRUD {
             return false;
         } finally {
             try {
-                conexion.setAutoCommit(true); // Restaurar auto-commit
+                conexion.setAutoCommit(true);  // Restaurar auto-commit
             } catch (SQLException e) {
                 e.printStackTrace();
             }
