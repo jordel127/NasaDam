@@ -16,29 +16,69 @@ public class Login extends JFrame {
     private JPanel panell;
 
     public Login() {
-        setVisible(true);
-        setTitle("Login");
+        setTitle("Login - NASA");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
+        panell = new JPanel(new GridBagLayout());
+        panell.setBackground(new Color(10, 25, 47));
 
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
 
-        user = new JTextField(10);
-        pass = new JPasswordField(10);
+        // Etiqueta Usuario
+        JLabel labelUser = new JLabel("Usuari:");
+        labelUser.setFont(new Font("Arial", Font.BOLD, 16));
+        labelUser.setForeground(new Color(173, 216, 230));  // Color azul claro, inspirado en los trajes de astronautas
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        panell.add(labelUser, gbc);
+
+        // Campo Usuario
+        user = new JTextField(15);
+        user.setFont(new Font("Arial", Font.PLAIN, 14));
+        user.setBackground(new Color(19, 41, 75));
+        user.setForeground(Color.WHITE);
+        user.setBorder(BorderFactory.createLineBorder(new Color(173, 216, 230), 2, true));
+        gbc.gridx = 1;
+        panell.add(user, gbc);
+
+        // Etiqueta Contraseña
+        JLabel labelPass = new JLabel("Contrasenya:");
+        labelPass.setFont(new Font("Arial", Font.BOLD, 16));
+        labelPass.setForeground(new Color(173, 216, 230));
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panell.add(labelPass, gbc);
+
+        // Campo Contraseña
+        pass = new JPasswordField(15);
+        pass.setFont(new Font("Arial", Font.PLAIN, 14));
+        pass.setBackground(new Color(19, 41, 75));
+        pass.setForeground(Color.WHITE);
+        pass.setBorder(BorderFactory.createLineBorder(new Color(173, 216, 230), 2, true));
+        gbc.gridx = 1;
+        panell.add(pass, gbc);
+
+        // Botón Login
         login = new JButton("Login");
-        panell = new JPanel();
+        login.setFont(new Font("Arial", Font.BOLD, 14));
+        login.setBackground(new Color(173, 216, 230));
+        login.setForeground(Color.BLACK);
+        login.setFocusPainted(false);
+        login.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2, true));
 
-        panell.add(new JLabel("Usuari: "));
-        panell.add(user);
-        panell.add(new JLabel("Contrasenya: "));
-        panell.add(pass);
-        panell.add(login);
+        gbc.gridwidth = 2;
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panell.add(login, gbc);
 
         add(panell, BorderLayout.CENTER);
 
         setSize(500, 300);
         setLocationRelativeTo(null);
         setResizable(false);
+        setVisible(true);
 
         class  LoginListener implements ActionListener {
             public void actionPerformed(ActionEvent e) {
@@ -49,6 +89,8 @@ public class Login extends JFrame {
 
                     if (userInfo[3] == null) {
                         JOptionPane.showMessageDialog(null, "Usuari o contrasenya incorrectes");
+                        user.setText("");
+                        pass.setText("");
                     }else if (userInfo[3].equals("3")){
                         JOptionPane.showMessageDialog(null, "Hola Fisic");
                         new FrameFisic(getInfoCompletaFisic("fisic", userInfo));

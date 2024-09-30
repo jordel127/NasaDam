@@ -7,7 +7,7 @@ public class Conexio {
 
         private static String url = "jdbc:mysql://localhost:3306/nasa";
         private static String user = "root";
-        private static String pass = "1212";
+        private static String pass = "admin";
         private static Connection conn;
 
         public static Connection getConnection() {
